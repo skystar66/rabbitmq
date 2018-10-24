@@ -1,0 +1,29 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: mq-service
+  rabbitmq:
+    host: ${rabbitmq.host:127.0.0.1}
+    rt: ${rabbitmq.port:5672}
+    username: ${rabbitmq.account:xuliang}
+    password: ${rabbitmq.pwd:123456}
+    publisher-confirms: true
+    virtual-host: ${rabbitmq.virthost:vhost}
+    listener:
+      acknowledge-mode: manual
+      concurrency: 1
+      retry:
+        enabled: true
+      max-concurrency: 10
+    publisher-returns: true
+
+logging:
+  config: classpath:logback.xml
+  level:
+    com:
+      tengyue:
+        service:
+          ResumClient: DEBUG
+
+
